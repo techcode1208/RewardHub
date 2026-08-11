@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">RewardHub</string>
+    <string name="title_activity_main">RewardHub</string>
+    <string name="package_name">com.rewardhub.app</string>
+    <string name="custom_url_scheme">com.rewardhub.app</string>
+</resources>
