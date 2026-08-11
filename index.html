@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>RewardHub</title>
+
+  <!-- Google AdSense -->
+  <script
+    async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7463820295505947"
+    crossorigin="anonymous">
+  </script>
+
+  <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+  <!-- ==================================================
+       AUTH SCREEN
+  =================================================== -->
+
+  <section id="authScreen" class="screen">
+
+    <div class="auth-card">
+
+      <!-- BRAND -->
+
+      <div class="brand">
+
+        <div class="brand-icon">
+          💎
+        </div>
+
+        <div>
+          <h1>RewardHub</h1>
+          <p>Learn • Play • Reward</p>
+        </div>
+
+      </div>
+
+
+      <!-- TABS -->
+
+      <div class="auth-tabs">
+
+        <button
+          id="loginTab"
+          class="tab active"
+          type="button">
+          Login
+        </button>
+
+        <button
+          id="registerTab"
+          class="tab"
+          type="button">
+          Create Account
+        </button>
+
+      </div>
+
+
+      <!-- LOGIN -->
+
+      <form id="loginForm">
+
+        <label for="loginEmail">
+          Email
+        </label>
+
+        <input
+          id="loginEmail"
+          type="email"
+          placeholder="you@example.com"
+          autocomplete="email"
+          required
+        >
+
+
+        <label for="loginPassword">
+          Password
+        </label>
+
+        <input
+          id="loginPassword"
+          type="password"
+          placeholder="Password"
+          autocomplete="current-password"
+          required
+        >
+
+
+        <button
+          class="primary-btn"
+          type="submit">
+          🔐 Login
+        </button>
+
+      </form>
+
+
+      <!-- REGISTER -->
+
+      <form
+        id="registerForm"
+        class="hidden">
+
+        <label for="registerName">
+          Full Name
+        </label>
+
+        <input
+          id="registerName"
+          type="text"
+          placeholder="Your full name"
+          autocomplete="name"
+          required
+        >
+
+
+        <label for="registerEmail">
+          Email
+        </label>
+
+        <input
+          id="registerEmail"
+          type="email"
+          placeholder="you@example.com"
+          autocomplete="email"
+          required
+        >
+
+
+        <label for="registerPassword">
+          Password
+        </label>
+
+        <input
+          id="registerPassword"
+          type="password"
+          placeholder="Minimum 8 characters"
+          minlength="8"
+          autocomplete="new-password"
+          required
+        >
+
+
+        <button
+          class="primary-btn"
+          type="submit">
+          🚀 Create Account
+        </button>
+
+      </form>
+
+
+      <!-- MESSAGE -->
+
+      <p
+        id="authMessage"
+        class="message">
+      </p>
+
+
+      <p class="small-note">
+        Your account is securely connected to Firebase.
+      </p>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ==================================================
+       MAIN REWARDHUB DASHBOARD
+  =================================================== -->
+
+  <main
+    id="app"
+    class="hidden">
+
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+      <div class="nav-brand">
+        💎
+        <span>RewardHub</span>
+      </div>
+
+
+      <div class="nav-user">
+
+        <div class="user-info">
+
+          <strong id="navName">
+            User
+          </strong>
+
+          <small>
+            Member
+          </small>
+
+        </div>
+
+
+        <div
+          id="avatar"
+          class="avatar">
+          U
+        </div>
+
+      </div>
+
+    </nav>
+
+
+
+    <!-- MAIN CONTAINER -->
+
+    <div class="container">
+
+
+      <!-- ==================================================
+           WELCOME
+      =================================================== -->
+
+      <section class="welcome">
+
+        <div>
+
+          <p class="eyebrow">
+            WELCOME BACK 👋
+          </p>
+
+
+          <h2>
+            Hello,
+            <span id="welcomeName">
+              User
+            </span>
+          </h2>
+
+
+          <p>
+            Complete quizzes, collect in-app coins
+            and track your activity.
+          </p>
+
+        </div>
+
+
+        <button
+          id="logoutBtn"
+          class="logout-btn"
+          type="button">
+          Logout
+        </button>
+
+      </section>
+
+
+
+      <!-- ==================================================
+           BALANCE
+      =================================================== -->
+
+      <section class="balance-card">
+
+        <div class="balance-top">
+
+          <div>
+
+            <span>
+              Total Reward Balance
+            </span>
+
+
+            <h1>
+              $
+              <span id="balance">
+                0.00
+              </span>
+            </h1>
+
+          </div>
+
+
+          <div class="balance-icon">
+            💰
+          </div>
+
+        </div>
+
+
+        <div class="coin-line">
+
+          🪙
+
+          <strong id="coinBalance">
+            0
+          </strong>
+
+          Coins
+
+
+          <span class="conversion">
+            5,000 coins = $1
+          </span>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- ==================================================
+           STATS
+      =================================================== -->
+
+      <section class="stats-grid">
+
+
+        <div class="stat-card">
+
+          <span class="stat-icon">
+            📺
+          </span>
+
+          <small>
+            Ads Today
+          </small>
+
+          <strong id="adsToday">
+            0
+          </strong>
+
+          <span class="muted">
+            Daily activity
+          </span>
+
+        </div>
+
+
+
+        <div class="stat-card">
+
+          <span class="stat-icon">
+            🧠
+          </span>
+
+          <small>
+            Quiz Score
+          </small>
+
+          <strong id="quizScore">
+            0
+          </strong>
+
+          <span class="muted">
+            Correct answers
+          </span>
+
+        </div>
+
+
+
+        <div class="stat-card">
+
+          <span class="stat-icon">
+            🎁
+          </span>
+
+          <small>
+            Rewards
+          </small>
+
+          <strong id="rewardCount">
+            0
+          </strong>
+
+          <span class="muted">
+            Rewards claimed
+          </span>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- ==================================================
+           ADS
+      =================================================== -->
+
+      <section class="section">
+
+        <div class="section-heading">
+
+          <div>
+
+            <p class="eyebrow">
+              ADVERTISEMENT
+            </p>
+
+            <h2>
+              Support RewardHub
+            </h2>
+
+          </div>
+
+        </div>
+
+
+        <div class="ad-card">
+
+          <ins
+            class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-7463820295505947"
+            data-ad-slot="3690930589"
+            data-ad-format="auto"
+            data-full-width-responsive="true">
+          </ins>
+
+        </div>
+
+
+        <p class="ad-note">
+          Advertising revenue varies by advertiser,
+          location, traffic and other factors.
+          No fixed earning per ad is guaranteed.
+        </p>
+
+      </section>
+
+
+
+      <!-- ==================================================
+           EARN & LEARN
+      =================================================== -->
+
+      <section class="section">
+
+        <div class="section-heading">
+
+          <div>
+
+            <p class="eyebrow">
+              ACTIVITY
+            </p>
+
+            <h2>
+              Earn & Learn
+            </h2>
+
+          </div>
+
+        </div>
+
+
+        <div class="action-grid">
+
+
+          <!-- QUIZ -->
+
+          <button
+            id="quizBtn"
+            class="action-card"
+            type="button">
+
+            <div class="action-icon blue">
+              🧠
+            </div>
+
+
+            <div>
+
+              <h3>
+                Quick Quiz
+              </h3>
+
+              <p>
+                Test your knowledge with
+                challenging English questions.
+              </p>
+
+            </div>
+
+
+            <span class="arrow">
+              →
+            </span>
+
+          </button>
+
+
+
+          <!-- DAILY -->
+
+          <button
+            id="dailyBtn"
+            class="action-card"
+            type="button">
+
+            <div class="action-icon purple">
+              🎁
+            </div>
+
+
+            <div>
+
+              <h3>
+                Daily Reward
+              </h3>
+
+              <p>
+                Claim your daily in-app
+                coin reward.
+              </p>
+
+            </div>
+
+
+            <span class="arrow">
+              →
+            </span>
+
+          </button>
+
+
+
+          <!-- PROFILE -->
+
+          <button
+            id="profileBtn"
+            class="action-card"
+            type="button">
+
+            <div class="action-icon green">
+              👤
+            </div>
+
+
+            <div>
+
+              <h3>
+                My Profile
+              </h3>
+
+              <p>
+                View your account and
+                reward statistics.
+              </p>
+
+            </div>
+
+
+            <span class="arrow">
+              →
+            </span>
+
+          </button>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- ==================================================
+           QUIZ
+      =================================================== -->
+
+      <section
+        id="quizSection"
+        class="section hidden">
+
+        <div class="quiz-card">
+
+          <div class="quiz-header">
+
+            <div>
+
+              <p class="eyebrow">
+                KNOWLEDGE CHALLENGE
+              </p>
+
+              <h2>
+                🧠 English Quiz
+              </h2>
+
+            </div>
+
+
+            <button
+              id="closeQuizBtn"
+              class="close-btn"
+              type="button">
+              ✕
+            </button>
+
+          </div>
+
+
+          <div class="quiz-progress">
+
+            <div>
+
+              Question
+
+              <strong id="questionNumber">
+                1
+              </strong>
+
+              / 10
+
+            </div>
+
+
+            <div>
+              +10 coins
+            </div>
+
+          </div>
+
+
+          <div
+            id="question"
+            class="question">
+            Loading question...
+          </div>
+
+
+          <div
+            id="options"
+            class="options">
+          </div>
+
+
+          <div
+            id="quizResult"
+            class="quiz-result">
+          </div>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- ==================================================
+           DAILY REWARD
+      =================================================== -->
+
+      <section class="section">
+
+        <div class="reward-card">
+
+          <div class="reward-icon">
+            🎁
+          </div>
+
+
+          <div class="reward-content">
+
+            <p class="eyebrow">
+              DAILY BONUS
+            </p>
+
+            <h2>
+              Daily Reward
+            </h2>
+
+            <p>
+              Claim your daily in-app
+              reward once every day.
+            </p>
+
+          </div>
+
+
+          <button
+            id="claimBtn"
+            class="primary-btn small"
+            type="button">
+            Claim 50 Coins
+          </button>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- ==================================================
+           WITHDRAWAL
+      =================================================== -->
+
+      <section class="section">
+
+        <div class="section-heading">
+
+          <div>
+
+            <p class="eyebrow">
+              BALANCE
+            </p>
+
+            <h2>
+              Withdrawal
+            </h2>
+
+          </div>
+
+        </div>
+
+
+        <div class="withdraw-card">
+
+
+          <div class="withdraw-info">
+
+            <span>
+              Available balance
+            </span>
+
+
+            <strong>
+              $
+              <span id="withdrawBalance">
+                0.00
+              </span>
+            </strong>
+
+          </div>
+
+
+
+          <label for="withdrawAmount">
+            Amount (USD)
+          </label>
+
+
+          <input
+            id="withdrawAmount"
+            type="number"
+            min="1"
+            step="0.01"
+            placeholder="Minimum $1"
+          >
+
+
+
+          <label for="withdrawMethod">
+            Payment method
+          </label>
+
+
+          <select id="withdrawMethod">
+
+            <option value="PayPal">
+              PayPal
+            </option>
+
+            <option value="Bank Transfer">
+              Bank Transfer
+            </option>
+
+            <option value="eWallet">
+              eWallet
+            </option>
+
+          </select>
+
+
+
+          <label for="paymentAccount">
+            Payment account
+          </label>
+
+
+          <input
+            id="paymentAccount"
+            type="text"
+            placeholder="Your payment account"
+          >
+
+
+
+          <button
+            id="withdrawBtn"
+            class="primary-btn"
+            type="button">
+            💰 Request Withdrawal
+          </button>
+
+
+          <p class="withdraw-note">
+            Withdrawals are reviewed by the admin
+            before payment is processed.
+          </p>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- ==================================================
+           ACTIVITY
+      =================================================== -->
+
+      <section class="section">
+
+        <div class="section-heading">
+
+          <div>
+
+            <p class="eyebrow">
+              HISTORY
+            </p>
+
+            <h2>
+              Recent Activity
+            </h2>
+
+          </div>
+
+        </div>
+
+
+        <div
+          id="activityList"
+          class="activity-list">
+
+          <div class="empty">
+            No activity yet.
+          </div>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- ==================================================
+           PROFILE
+      =================================================== -->
+
+      <section
+        id="profileSection"
+        class="section hidden">
+
+        <div class="profile-card">
+
+
+          <div
+            class="large-avatar"
+            id="profileAvatar">
+            U
+          </div>
+
+
+          <h2 id="profileName">
+            User
+          </h2>
+
+
+          <p id="profileEmail">
+            email@example.com
+          </p>
+
+
+          <div class="profile-stats">
+
+
+            <div>
+
+              <strong id="profileCoins">
+                0
+              </strong>
+
+              <span>
+                Coins
+              </span>
+
+            </div>
+
+
+
+            <div>
+
+              <strong id="profileScore">
+                0
+              </strong>
+
+              <span>
+                Score
+              </span>
+
+            </div>
+
+
+
+            <div>
+
+              <strong id="profileRewards">
+                0
+              </strong>
+
+              <span>
+                Rewards
+              </span>
+
+            </div>
+
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- ==================================================
+           FOOTER
+      =================================================== -->
+
+      <footer>
+
+        <p>
+          © 2026 RewardHub
+        </p>
+
+        <p>
+          Coins shown in this frontend
+          are demo/in-app values.
+        </p>
+
+      </footer>
+
+
+    </div>
+
+  </main>
+
+
+
+  <!-- ==================================================
+       PROFILE MODAL
+  =================================================== -->
+
+  <div
+    id="profileModal"
+    class="modal hidden">
+
+
+    <div class="modal-card">
+
+
+      <button
+        id="closeProfile"
+        class="modal-close"
+        type="button">
+        ✕
+      </button>
+
+
+      <div
+        class="large-avatar"
+        id="modalAvatar">
+        U
+      </div>
+
+
+      <h2 id="modalName">
+        User
+      </h2>
+
+
+      <p id="modalEmail">
+        email@example.com
+      </p>
+
+
+      <div class="modal-balance">
+
+        🪙
+
+        <strong id="modalCoins">
+          0
+        </strong>
+
+        Coins
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+
+
+  <!-- ==================================================
+       VITE APP
+  =================================================== -->
+
+  <script type="module" src="/app.js"></script>
+
+</body>
+
+</html>

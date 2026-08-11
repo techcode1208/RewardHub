@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>RewardHub Admin</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      color: #172033;
+    }
+
+    .navbar {
+      background: #111827;
+      color: white;
+      padding: 18px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .admin-badge {
+      background: #2563eb;
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+    }
+
+    .container {
+      max-inline-size: 1200px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    h1 {
+      margin-block-end: 5px;
+    }
+
+    .subtitle {
+      color: #667085;
+      margin-block-end: 25px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns:
+        repeat(4, 1fr);
+
+      gap: 15px;
+      margin-block-end: 30px;
+    }
+
+    .stat {
+      background: white;
+      padding: 22px;
+      border-radius: 14px;
+      box-shadow:
+        0 3px 15px rgba(
+          0,
+          0,
+          0,
+          0.06
+        );
+    }
+
+    .stat small {
+      color: #667085;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 30px;
+      margin-block-start: 8px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow:
+        0 3px 15px rgba(
+          0,
+          0,
+          0,
+          0.06
+        );
+    }
+
+    .table-wrapper {
+      overflow-x: auto;
+    }
+
+    table {
+      inline-size: 100%;
+      border-collapse: collapse;
+      min-inline-size: 850px;
+    }
+
+    th,
+    td {
+      padding: 14px;
+      border-block-end: 1px solid #eee;
+      text-align: start;
+    }
+
+    th {
+      background: #f8fafc;
+    }
+
+    .status {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 15px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .pending {
+      background: #fff7ed;
+      color: #c2410c;
+    }
+
+    .approved {
+      background: #ecfdf3;
+      color: #027a48;
+    }
+
+    .rejected {
+      background: #fef3f2;
+      color: #b42318;
+    }
+
+    button {
+      border: none;
+      border-radius: 7px;
+      padding: 8px 12px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .approve {
+      background: #16a34a;
+      color: white;
+    }
+
+    .reject {
+      background: #dc2626;
+      color: white;
+      margin-inline-start: 5px;
+    }
+
+    .refresh {
+      background: #2563eb;
+      color: white;
+      margin-block-end: 15px;
+    }
+
+    .logout {
+      background: #374151;
+      color: white;
+    }
+
+    .message {
+      padding: 15px;
+      background: #fff7ed;
+      border-radius: 8px;
+      margin-block-end: 15px;
+      display: none;
+    }
+
+    @media (max-inline-size: 800px) {
+
+      .stats {
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
+    }
+
+    @media (max-inline-size: 500px) {
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .navbar {
+        padding: 15px;
+      }
+
+      .container {
+        padding: 0 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar">
+
+    <div class="brand">
+      💎 RewardHub Admin
+    </div>
+
+    <div>
+      <span class="admin-badge">
+        ADMIN
+      </span>
+
+      <button
+        id="logoutBtn"
+        class="logout"
+      >
+        Logout
+      </button>
+    </div>
+
+  </nav>
+
+
+  <main class="container">
+
+    <h1>
+      Admin Dashboard
+    </h1>
+
+    <p class="subtitle">
+      Manage RewardHub withdrawal requests.
+    </p>
+
+
+    <div
+      id="message"
+      class="message"
+    ></div>
+
+
+    <section class="stats">
+
+      <div class="stat">
+        <small>Total Requests</small>
+        <strong id="totalCount">
+          0
+        </strong>
+      </div>
+
+      <div class="stat">
+        <small>Pending</small>
+        <strong id="pendingCount">
+          0
+        </strong>
+      </div>
+
+      <div class="stat">
+        <small>Approved</small>
+        <strong id="approvedCount">
+          0
+        </strong>
+      </div>
+
+      <div class="stat">
+        <small>Rejected</small>
+        <strong id="rejectedCount">
+          0
+        </strong>
+      </div>
+
+    </section>
+
+
+    <section class="card">
+
+      <button
+        id="refreshBtn"
+        class="refresh"
+      >
+        🔄 Refresh Requests
+      </button>
+
+
+      <div class="table-wrapper">
+
+        <table>
+
+          <thead>
+
+            <tr>
+
+              <th>Request ID</th>
+
+              <th>User ID</th>
+
+              <th>Amount</th>
+
+              <th>Method</th>
+
+              <th>Payment Account</th>
+
+              <th>Status</th>
+
+              <th>Action</th>
+
+            </tr>
+
+          </thead>
+
+
+          <tbody id="withdrawalTable">
+
+            <tr>
+
+              <td colspan="7">
+                Loading...
+              </td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <script
+    type="module"
+    src="./admin.js"
+  ></script>
+
+</body>
+
+</html>
